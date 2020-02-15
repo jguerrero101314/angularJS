@@ -30,5 +30,6 @@ export class AgregarPage implements OnInit {
     this.lista.items.push(nuevoItem);
 
     this.nombreItem = "";
+    this.deseosService.guardarStorage();
   }
 }
