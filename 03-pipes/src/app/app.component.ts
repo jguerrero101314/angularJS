@@ -41,4 +41,6 @@ export class AppComponent {
 
 
   activar:boolean = true;
+  idioma:string = 'es';
+
 }

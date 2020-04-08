@@ -98,6 +98,23 @@
                 <td> {{ fecha | date:'MMMM - dd'}} </td>
             </tr>
             <tr>
+                <td> {{ fecha }} </td>
+                <td> date:'MMMM - dd':'':'en' </td>
+                <td> {{ fecha | date:'MMMM - dd':'':'en'}} </td>
+            </tr>
+            <tr>
+                <td> {{ fecha }} </td>
+                <td>
+                    date:'MMMM - dd':'':'{{idioma}}'
+                    <br>
+                    <button (click)="idioma='es'" type="button" class="mr-1 btn btn-primary">Español</button>
+                    <button (click)="idioma='en'" type="button" class="mr-1 btn btn-secondary">Inglés</button>
+                    <button (click)="idioma='fr'" type="button" class="mr-1 btn btn-success">Francés</button>
+
+                </td>
+                <td> {{ fecha | date:'MMMM - dd':'':idioma}} </td>
+            </tr>
+            <tr>
                 <td> {{ nombre2 }} </td>
                 <td> capitalizado </td>
                 <td> {{ nombre2 | titlecase }} </td>
