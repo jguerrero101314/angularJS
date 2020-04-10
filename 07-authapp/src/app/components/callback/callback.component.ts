@@ -10,8 +10,8 @@ export class CallbackComponent implements OnInit {
 
   constructor(public auth: AuthService) { }
 
-  ngOnInit(): void {
-
+  ngOnInit() {
+    this.auth.handleAuthCallback();
   }
 
 }
