@@ -20,6 +20,7 @@ export class RegistroComponent implements OnInit {
     if (form.invalid) {
       return;
     }
+    console.log(this.usuario.password);
     this.auth.NuevoUsuario(this.usuario)
         .subscribe(resp => {
           console.log(resp);

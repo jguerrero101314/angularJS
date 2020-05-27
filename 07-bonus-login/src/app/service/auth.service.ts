@@ -20,7 +20,16 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   logout() {}
-  login(usuario: UsuarioMdoel) {}
+  login(usuario: UsuarioMdoel) {
+    const authData = {
+      // email: usuario.email,
+      // password: usuario.password,
+      ...usuario, // es lo mismo que mandar solo email y password
+      returnSecureToken: true,
+    };
+    return this.http.post(`${this.url}signUp?key=${this.apiKey}`, authData);
+
+  }
   NuevoUsuario(usuario: UsuarioMdoel) {
     const authData = {
       // email: usuario.email,
@@ -29,6 +38,6 @@ export class AuthService {
       returnSecureToken: true,
     };
 
-    return this.http.post(`${this.url}signUp?key=${this.apiKey}`, authData);
+    return this.http.post(`${this.url}signInWithPassword?key=${this.apiKey}`, authData);
   }
 }
