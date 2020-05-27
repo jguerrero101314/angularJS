@@ -21,13 +21,11 @@ export class LoginComponent implements OnInit {
     if (form.invalid) {
       return;
     }
-    this.auth.login(this.usuario).subscribe(
-      (resp) => {
-        console.log(resp);
-      },
-      (err) => {
-        console.log(err.error.error.message);
-      }
-    );
+    this.auth.login(this.usuario)
+    .subscribe(resp => {
+      console.log(resp);
+    },(error)=>{
+      console.log(error.error.error.message);
+    });
   }
 }
