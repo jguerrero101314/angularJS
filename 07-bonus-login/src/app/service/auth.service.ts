@@ -18,7 +18,7 @@ export class AuthService {
   //https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=[API_KEY]
 
   constructor(private http: HttpClient) {
-    // this.leerToken();
+     this.leerToken();
   }
 
   logout() {}
@@ -68,5 +68,8 @@ export class AuthService {
       this.userToken = "";
     }
     return this.userToken;
+  }
+  estaAutenticado():boolean{
+    return this.userToken.length > 2;
   }
 }
