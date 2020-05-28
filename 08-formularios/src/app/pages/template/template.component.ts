@@ -12,7 +12,8 @@ export class TemplateComponent implements OnInit {
     nombre: "Alexander",
     apellido: "Guerrero",
     correo: "joelg1014@hotmail.com",
-    pais:''
+    pais:'PAN',
+    genero:'M'
   };
   paises: any[] = [];
   constructor(private paisService: PaisService) {}
@@ -24,7 +25,7 @@ export class TemplateComponent implements OnInit {
         nombre: 'Seleccione Pais',
         codigo:''
       })
-      console.log(this.paises);
+      console.log(this.paises)
     });
   }
   guardar(forma: NgForm) {
