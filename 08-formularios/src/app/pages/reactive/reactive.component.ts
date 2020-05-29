@@ -57,8 +57,15 @@ export class ReactiveComponent implements OnInit {
         distrito: ["", Validators.required],
         ciudad: ["", Validators.required],
       }),
-      pasatiempos: this.fb.array([[], [], [], [], [], []]),
+      pasatiempos: this.fb.array([]),
     });
+  }
+  borrarPasatiempo(i:number){
+    this.pasatiempos.removeAt(i);
+
+  }
+  agregarPasatiempo(){
+    this.pasatiempos.push(this.fb.control('',));
   }
   guardar() {
     console.log(this.forma);
@@ -84,8 +91,10 @@ export class ReactiveComponent implements OnInit {
         distrito: "Panama",
         ciudad: "Panama",
       },
-      pasatiempos: this.fb.array([[], [], [], [], [], []]),
     });
+    // cargar pasatiempo
+    // ['comer','dormir'].forEach(valor => this.pasatiempos.push(this.fb.control(valor)));
+
     // Posteo de informacion
   }
 }
