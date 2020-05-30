@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { HeroeModel } from "../models/heroe.model";
+import { HeroeModel } from '../models/heroe.model';
 import { map } from "rxjs/operators";
 
 @Injectable({
@@ -18,5 +18,13 @@ export class HeroesService {
         return heroe;
       })
     );
+  }
+  actualizarHeroe(heroe: HeroeModel){
+    const heroeTemp = {
+      ...heroe//operador express
+    };
+    delete heroeTemp.id;
+    return this.http.put(`${this.url}/heroes/${heroe.id}.json`, heroeTemp);
+
   }
 }

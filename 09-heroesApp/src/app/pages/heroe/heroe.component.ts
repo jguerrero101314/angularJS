@@ -22,8 +22,16 @@ export class HeroeComponent implements OnInit {
       swal.fire('Formulario no valido', this.titularAlerta, 'error');
       return;
     }
-    this.heroeService.crearHeroe(this.heroe).subscribe(resp => {
-      swal.fire('Enviado Correctamente', this.titularAlerta, 'success');
-    });
+    if(this.heroe.id ){
+      this.heroeService.actualizarHeroe(this.heroe).subscribe( () => {
+        swal.fire('Actualizado Correctamente', this.titularAlerta, 'success');
+      });
+    }else{
+      this.heroeService.crearHeroe(this.heroe).subscribe(resp => {
+        swal.fire('Enviado Correctamente', this.titularAlerta, 'success');
+        this.heroe = resp;
+      });
+    }
+
   }
 }
