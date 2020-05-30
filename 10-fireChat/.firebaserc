@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "firechat-ea2fe": {
+      "hosting": {
+        "fireChat": [
+          "firechat-ea2fe"
+        ]
+      }
+    }
+  }
+}
