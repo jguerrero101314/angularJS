@@ -4,6 +4,7 @@ import { NgForm } from "@angular/forms";
 import { HeroesService } from "../../service/heroes.service";
 import swal from "sweetalert2";
 import { Observable } from "rxjs";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-heroe",
@@ -14,9 +15,20 @@ export class HeroeComponent implements OnInit {
   heroe = new HeroeModel();
   titularAlerta: string;
 
-  constructor(private heroeService: HeroesService) {}
+  constructor(
+    private heroeService: HeroesService,
+    private route: ActivatedRoute
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get("id");
+    if (id !== "nuevo") {
+      this.heroeService.getHeroe(id).subscribe((resp:HeroeModel) => {
+        this.heroe = resp;
+        this.heroe.id = id;
+      });
+    }
+  }
   guardar(form: NgForm) {
     if (form.invalid) {
       swal.fire("Formulario no valido", this.titularAlerta, "error");
@@ -38,12 +50,12 @@ export class HeroeComponent implements OnInit {
       peticion = this.heroeService.crearHeroe(this.heroe);
       //  swal.fire('Enviado Correctamente', this.titularAlerta, 'success');
     }
-    peticion.subscribe(resp => {
-          swal.fire({
-            title: this.heroe.nombre,
-            text: "Se actualizo correctamente",
-            icon: "success"
-          });
+    peticion.subscribe((resp) => {
+      swal.fire({
+        title: this.heroe.nombre,
+        text: "Se actualizo correctamente",
+        icon: "success",
+      });
     });
   }
 }
