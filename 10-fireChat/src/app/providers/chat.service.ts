@@ -5,6 +5,10 @@ import {
 } from "@angular/fire/firestore";
 import { Mensaje } from "../interface/mensaje.interface";
 import { map } from "rxjs/operators";
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { auth } from 'firebase/app';
 
 @Injectable({
   providedIn: "root",
@@ -14,8 +18,25 @@ export class ChatService {
   // items: Observable<Mensaje[]>;
 
   public chats: Mensaje[] = [];
+  public usuario: any = {};
 
-  constructor(private afs: AngularFirestore) {}
+  constructor(private afs: AngularFirestore,public afAuth: AngularFireAuth) {
+    this.afAuth.authState.subscribe(user => {
+      console.log('estado del usuario: ', user);
+      if(!user){
+        return;
+      }
+      this.usuario.nombre = user.displayName;
+      this.usuario.uid = user.uid;
+    })
+   }
+  login(proveedor: string) {
+    firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider());
+  }
+  logout() {
+    firebase.auth().signOut();
+  }
+
   cargarMensajes() {
     this.itemsCollection = this.afs.collection<Mensaje>("chats", (ref) =>
       ref.orderBy("fecha", "desc").limit(5)
@@ -23,8 +44,8 @@ export class ChatService {
     return this.itemsCollection.valueChanges().pipe(
       map((mensajes: Mensaje[]) => {
         console.log(mensajes);
-        this.chats= [];
-        for(let mensaje of mensajes){
+        this.chats = [];
+        for (let mensaje of mensajes) {
           this.chats.unshift(mensaje);
         }
         return this.chats;
