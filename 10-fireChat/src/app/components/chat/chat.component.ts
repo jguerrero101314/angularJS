@@ -1,25 +1,26 @@
-import { Component } from '@angular/core';
-import { ChatService } from '../../providers/chat.service';
-
+import { Component } from "@angular/core";
+import { ChatService } from "../../providers/chat.service";
 
 @Component({
-  selector: 'app-chat',
-  templateUrl: './chat.component.html',
-  styles: []
+  selector: "app-chat",
+  templateUrl: "./chat.component.html",
+  styles: [],
 })
-export class ChatComponent  {
-  mensaje: string = " ";
+export class ChatComponent {
+  mensaje: string = "";
 
   constructor(private _cs: ChatService) {
-    this._cs.cargarMensajes()
-        .subscribe((mensajes:any[])=>{
-          console.log(mensajes);
-        });
+    this._cs.cargarMensajes().subscribe();
+
   }
 
-  enviar_mensaje(){
+  enviar_mensaje() {
     console.log(this.mensaje);
-
+    if(this.mensaje.length === 0 ){
+      return;
+    }
+    this._cs.agregarmensaje(this.mensaje)
+        .then(() => this.mensaje = "")
+        .catch((err) => console.error('Error al enviar', err));
   }
-
 }
