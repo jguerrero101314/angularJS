@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Marcador } from '../../classes/marcador.class';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-mapa',
@@ -11,27 +12,30 @@ export class MapaComponent implements OnInit {
 
   lat = 51.678418;
   lng = 7.809007;
-  constructor() {
+  constructor(private _snackBar: MatSnackBar) {
 
-    if(localStorage.getItem('marcadores')){
+    if (localStorage.getItem('marcadores')) {
       this.marcadores = JSON.parse(localStorage.getItem('marcadores'));
     }
   }
 
   ngOnInit(): void {
   }
-  agregarMarcador(evento){
-    const coords: { lat: number, lng: number} = evento.coords;
+  agregarMarcador(evento) {
+    const coords: { lat: number, lng: number } = evento.coords;
     console.log(evento.coords.lat);
     const marcadorNuevo = new Marcador(coords.lat, coords.lng);
     this.marcadores.push(marcadorNuevo);
     this.guardarStorage();
+    this._snackBar.open('Marcador agregado', 'Cerrar', {duration:3000});
+
   }
-  borrarMarcador( i: number){
+  borrarMarcador(i: number) {
     this.marcadores.splice(i, 1);
     this.guardarStorage();
+    this._snackBar.open('Marcador borrado', 'Cerrar',{duration:3000});
   }
-  guardarStorage(){
+  guardarStorage() {
     localStorage.setItem('marcadores', JSON.stringify(this.marcadores));
   }
 
