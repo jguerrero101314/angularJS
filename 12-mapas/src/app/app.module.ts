@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MapaComponent } from './components/mapa/mapa.component';
 import { MapaEditarComponent } from './components/mapa/mapa-editar.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -29,7 +30,8 @@ import { MapaEditarComponent } from './components/mapa/mapa-editar.component';
     GoogleMapsModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBG9HMhkqAHBIYFQrIGB1blKXSyzgPmz5Q'
-    })
+    }),
+    ReactiveFormsModule
 
   ],
   providers: [],
