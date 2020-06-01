@@ -1,6 +1,20 @@
 <mat-card>
     <mat-card-title>Content</mat-card-title>
-    <mat-card-content>
-        XYZ
-    </mat-card-content>
+
+    <!-- <google-map></google-map> -->
+    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="15">
+        <agm-marker [latitude]="lat" [longitude]="lng" [label]="'M'">
+            <agm-info-window>
+                <strong>Titulo</strong>
+                <p>
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aperiam ab tempora ut explicabo saepe sed fugit veritatis id, mollitia magni! Quo odit maiores iusto eum perspiciatis facere dolore nisi minima.
+                </p>
+                <div>
+                    <button mat-raised-button color="primary">Editar</button>
+                    <button mat-raised-button color="warn">Borrar</button>
+                </div>
+            </agm-info-window>
+        </agm-marker>
+    </agm-map>
+
 </mat-card>
