@@ -9,6 +9,7 @@ import { PeliculasService } from '../../providers/peliculas.service';
 })
 export class HomeComponent implements OnInit {
   peliculasPopulares: any[] = [];
+  cartelera: any[] = [];
 
   constructor(public _ps:PeliculasService) {
       // this._ps.getPopulares().subscribe(
@@ -21,9 +22,12 @@ export class HomeComponent implements OnInit {
     //   this.peliculasPopulares = items.slice(0, 8);
     //   console.log(this.peliculasPopulares);
     // });
-    this._ps.getCartelera().subscribe(data => console.log(data));
-   }
-
+     this._ps.getCartelera()
+    .subscribe( ( items: any ) => {
+      this.cartelera = items.slice(0, 8);
+      console.log(this.cartelera);
+    });
+  }
   ngOnInit(): void {
   }
   verPeliculas(){

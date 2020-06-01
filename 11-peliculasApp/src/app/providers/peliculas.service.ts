@@ -39,6 +39,6 @@ export class PeliculasService {
     let url = `${this.urlMoviedb}/discover/movie?primary_release_date.gte=${this.date1}&primary_release_date.lte=${this.date2}&api_key=${this.apiKey}&language=es`;
     return this.http.get(url).pipe(map((res: any) => res.results));
   }
-}    //const request = `/discover/movie?primary_release_date.gte=${ txHasta }&primary_release_date.lte=${ txHoy }`;
+}
 
 
