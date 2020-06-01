@@ -1,10 +1,10 @@
 <form [formGroup]="forma">
     <mat-form-field>
-        <mat-label>Favorite food</mat-label>
+        <mat-label>Titulo</mat-label>
         <input matInput placeholder="Titulo" formControlName="titulo">
     </mat-form-field>
     <mat-form-field>
-        <mat-label>Leave a comment</mat-label>
+        <mat-label>Descripcion</mat-label>
         <textarea row="3" matInput placeholder="Descripcion" formControlName="desc"></textarea>
     </mat-form-field>
     <button (click)="guardarCambios()" class="btn" mat-raised-button color="primary">Editar</button>
