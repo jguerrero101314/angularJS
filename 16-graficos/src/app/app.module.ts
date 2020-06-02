@@ -7,12 +7,14 @@ import { AppComponent } from './app.component';
 import { ChartsModule } from 'ng2-charts';
 import { LineaComponent } from './components/linea/linea.component';
 import { BarrasComponent } from './components/barras/barras.component';
+import { DonasComponent } from './components/donas/donas.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LineaComponent,
-    BarrasComponent
+    BarrasComponent,
+    DonasComponent
   ],
   imports: [
     BrowserModule,
