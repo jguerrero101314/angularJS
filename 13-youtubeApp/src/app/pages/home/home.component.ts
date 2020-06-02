@@ -14,13 +14,15 @@ export class HomeComponent implements OnInit {
   constructor(private youtubeService: YoutubeService) {}
 
   ngOnInit(): void {
+    this.cargarVideos();
+  }
+  cargarVideos(){
     this.youtubeService.getVideos().subscribe((resp) => {
       this.videos.push(...resp);
       console.log(this.videos);
     });
   }
   mostrarVideo( video: Video){
-    console.log(video);
     Swal.fire({
       html: `
       <h4>${video.title}</h4>

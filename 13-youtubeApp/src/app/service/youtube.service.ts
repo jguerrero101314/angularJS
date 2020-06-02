@@ -17,10 +17,11 @@ export class YoutubeService {
   getVideos() {
     const url = `${this.youtubeURL}/playlistItems`;
     const params = new HttpParams()
-      .set("part", "snippet")
-      .set("maxResults", "10")
-      .set("playlistId", this.playList)
-      .set("key", this.apkiKey);
+      .set('part', 'snippet')
+      .set('maxResults', '15')
+      .set('playlistId', this.playList)
+      .set('key', this.apkiKey)
+      .set('pageToken', this.nextPageToken);
     return this.http
       .get<YoutubeResponse>(url, { params })
       .pipe(
