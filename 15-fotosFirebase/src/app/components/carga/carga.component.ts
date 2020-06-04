@@ -17,9 +17,11 @@ export class CargaComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
   cargarImagenes(){
     this._cargaImagenes.cargarImagenesFirebase(this.archivos);
+  }
+  limpiarArchivos(){
+    this.archivos = [];
 
   }
 }
