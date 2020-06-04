@@ -1,12 +1,16 @@
 <div class="row">
-    <div class="col-md-4 ml-5">
+
+    <div class="col-md-4">
+
         <h3>Seleccione archivos</h3>
 
-        <div appNgDropFiles (mouseSobre)="estaSobreElemento = $event" [ngClass]="{'file-over':'estaSobreElemento'}" class="well drop-zone">
+        <div appNgDropFiles [archivos]="archivos" (mouseSobre)="estaSobreElemento = $event" [ngClass]="{ 'file-over': estaSobreElemento }" class="well drop-zone">
             <h4>Deje caer aquí los archivos</h4>
-            <img src="assets/drop-images.png" />
+            <img src="assets/drop-images.png">
         </div>
+
     </div>
+
     <div class="col-md-7">
         <h4>Cargar archivos</h4>
         <button (click)="cargarImagenes()" [disabled]="archivos.length === 0" class="btn btn-success mr-2">Cargar</button>
