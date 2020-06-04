@@ -1,1 +1,8 @@
-<h1>Hola</h1>
+<div class="card-columns">
+    <div class="card col-12" *ngFor="let item of items | async">
+        <img [src]="item.url" class="card-img-top img-fluid">
+        <div class="card-body">
+            <h5 class="card-title">{{item.nombre}}</h5>
+        </div>
+    </div>
+</div>
