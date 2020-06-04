@@ -4,6 +4,7 @@ import {
   AngularFirestoreCollection,
 } from "@angular/fire/firestore";
 import * as firebase from 'firebase/app';
+import { FileItem } from '../models/file-item';
 
 @Injectable({
   providedIn: "root",
@@ -11,6 +12,10 @@ import * as firebase from 'firebase/app';
 export class CargaImagenesService {
   private CARPETA_IMAGENES = 'img';
   constructor(private db: AngularFirestore) { }
+  cargarImagenesFirebase( imagenes: FileItem[] ){
+    console.log(imagenes);
+
+  }
 
   private guardarImagen( imagen: { nombre:string, url:string } ){
     this.db.collection(`/${ this.CARPETA_IMAGENES }`)
