@@ -8,11 +8,13 @@ import { CargaComponent } from './components/carga/carga.component';
 import { CargaImagenesService } from './providers/carga-imagenes.service';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
+import { NgDropFilesDirective } from './directives/ng-drop-files.directive';
 @NgModule({
   declarations: [
     AppComponent,
     FotosComponent,
-    CargaComponent
+    CargaComponent,
+    NgDropFilesDirective
   ],
   imports: [
     BrowserModule,
