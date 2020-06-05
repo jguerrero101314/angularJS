@@ -14,3 +14,9 @@ export const helloWorld = functions.https.onRequest((request, response) => {
     mensaje: "Hola mundo desde funciones de firebase!!!",
   });
 });
+export const getGoty = functions.https.onRequest((request, response) => {
+    const nombre = ' Joel ';
+    response.json({
+        nombre
+    })
+  });
