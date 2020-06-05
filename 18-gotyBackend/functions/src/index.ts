@@ -2,7 +2,7 @@ import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import * as express from "express";
 import * as cors from "cors";
-const serviceAccount = require("./serviceAccountKey.json");
+const serviceAccount = require("./serviceAccounKey.json");
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
     databaseURL: "https://gameoftheyear-226d3.firebaseio.com",
@@ -34,3 +34,5 @@ app.get("/goty", async (req, res) => {
 
     res.json(juegos);
 });
+
+export const api = functions.https.onRequest( app );
