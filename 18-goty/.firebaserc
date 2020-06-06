@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "gameoftheyear-226d3": {
+      "hosting": {
+        "goty": [
+          "gameoftheyear-226d3"
+        ]
+      }
+    }
+  }
+}
