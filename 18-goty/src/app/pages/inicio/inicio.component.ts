@@ -9,6 +9,7 @@ import { Game } from '../../interfaces/interfaces';
   styleUrls: ["./inicio.component.css"],
 })
 export class InicioComponent implements OnInit {
+  juegos: any[]= [];
   constructor(private db: AngularFirestore) {}
 
   ngOnInit(): void {
@@ -16,17 +17,17 @@ export class InicioComponent implements OnInit {
       .collection("goty")
       .valueChanges()
       .pipe(
-        map( (resp: Game[]) =>resp.map(({name, votos}) =>  ({ name, value: votos})))
+        map( (resp: Game[]) => resp.map(({name, votos}) =>  ({ name, value: votos})))
           // return resp.map( juego => {
           //   return{
           //     name: juego.name,
           //     value: juego.votos
           //   }
           // })
-
       )
-      .subscribe((resp) => {
-        console.log(resp);
+      .subscribe((juegos) => {
+        // console.log(juegos);
+        this.juegos = juegos;
       });
   }
 }
