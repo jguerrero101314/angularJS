@@ -8,12 +8,6 @@ admin.initializeApp({
   databaseURL: "https://gameoftheyear-226d3.firebaseio.com",
 });
 const db = admin.firestore();
-export const helloWorld = functions.https.onRequest((request, response) => {
-  response.json({
-    mensaje: "Hola Mundo desde Funciones de Firebase!!!",
-  });
-});
-
 export const getGOTY = functions.https.onRequest(async (request, response) => {
   // const nombre = request.query.nombre || 'Sin Nombre';
   const gotyRef = db.collection("goty");
