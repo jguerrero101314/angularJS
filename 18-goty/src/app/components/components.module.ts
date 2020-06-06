@@ -21,4 +21,5 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     BrowserAnimationsModule
   ]
 })
-export class ComponentsModule { }
+export class ComponentsModule {
+}
