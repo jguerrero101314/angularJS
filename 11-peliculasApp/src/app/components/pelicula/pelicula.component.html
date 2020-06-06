@@ -1,0 +1,62 @@
+<ng-progress [positionUsing]="'marginLeft'" [minimum]="0.15" [maximum]="1"
+             [speed]="200" [showSpinner]="true" [toggle] = "false"
+             [color]="'red'" [trickleSpeed]="250" [thick]="false" [ease]="'linear'"
+></ng-progress>
+<div class="row mt-5 extramargen mx-auto">
+  <div class="col-md-8">
+    <div class="card" style="width: 100%;" *ngIf="pelicula">
+      <div class="card-body">
+        <h5 class="card-title">{{pelicula.title}}</h5>
+        <p class="card-text">{{pelicula.overview}}</p>
+      </div>
+      <ul class="list-group list-group-flush">
+        <div class="row">
+          <div class="col-md-6">
+            <li class="list-group-item"><strong>Titulo Original:</strong> {{pelicula.original_title}}</li>
+          </div>
+          <div class="col-md-6">
+            <li class="list-group-item"><strong>Popularidad: </strong>{{pelicula.popularity}}</li>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <li class="list-group-item"><strong>Votos:</strong> {{pelicula.vote_count}}</li>
+          </div>
+          <div class="col-md-6">
+            <li class="list-group-item"><strong>Promedio Votos:</strong> {{pelicula.vote_average}}</li>
+          </div>
+        </div>
+        <li class="list-group-item text-center" *ngIf="trailer && trailer['results'].length > 0">
+        <div class="card-body">
+            <div class="row text-center">
+              <div class="col-md-12">
+                  <iframe width="560" height="315" [src]="trailer.results[0].key | domseguro:'https://www.youtube.com/embed/'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item text-center">
+          <span class="badge badge-light mr-2"
+            *ngFor="let company of pelicula.production_companies">{{company.name}}</span>
+        </li>
+        <li class="list-group-item text-center">
+          <span class="badge badge-warning mr-2" *ngFor="let genero of pelicula.genres">{{genero.name}}</span>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-4" *ngIf="pelicula">
+    <img [src]="pelicula.poster_path | domseguro:'https://image.tmdb.org/t/p/w300'" class="card-img-top puntero"
+      alt="{{pelicula.title}}" (click)="onNavigate(pelicula.homepage)">
+      <div class="row">
+        <div class="col-md-12">
+            <p class="card-text"><small class="text-muted">Lanzamiento: {{pelicula.release_date}}</small></p>
+        </div>
+      </div>
+
+      <div class="col-md-12 text-right">
+          <button class="btn btn-outline-primary btn-lg" (click)="backClicked()">Volver</button>
+        </div>
+  </div>
+</div>

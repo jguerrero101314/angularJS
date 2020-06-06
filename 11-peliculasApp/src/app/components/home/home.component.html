@@ -1,12 +1,58 @@
-<div class="card-columns m-5">
-    <div class="card puntero" *ngFor="let item of this.cartelera">
-        <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
-        <div class="card-body">
-            <h5 class="card-title">{{item.title}}</h5>
-            <p class="card-text">{{item.overview}}</p>
-        </div>
-        <div class="card-footer">
-            <small class="text-muted">{{item.release_date}}</small>
-        </div>
-    </div>
+<ng-progress [positionUsing]="'marginLeft'" [minimum]="0.15" [maximum]="1"
+             [speed]="200" [showSpinner]="true" [toggle] = "false"
+             [color]="'red'" [trickleSpeed]="250" [thick]="false" [ease]="'linear'"
+></ng-progress>
+<div class="row mt-3 full">
+  <div class="col-md-12 text-center">
+      <div class="btn-group" role="group" aria-label="Basic example">
+      <button [routerLink] ="['/categorias/populares']" type="button" class="btn btn-outline-warning btn-lg" aria-label="Left Align">
+          <span class="fab fa-hotjar" aria-hidden="true"></span>
+          Populares
+          </button>
+          &nbsp;&nbsp;
+          <button [routerLink] ="['/categorias/niños']" type="button" class="btn btn-outline-info btn-lg" aria-label="Left Align">
+              <span class="fas fa-child" aria-hidden="true"></span>
+              Niños
+          </button>
+          &nbsp;&nbsp;
+          <button [routerLink] ="['/categorias/teatros']" type="button" class="btn btn-outline-success btn-lg" aria-label="Left Align">
+              <span class="fas fa-ice-cream" aria-hidden="true"></span>
+              En teatros
+          </button>
+          &nbsp;&nbsp;
+          <select (change)="filterChanged($event.target.value)" class="custom-select custom-select-lg" style="width:200px;">
+              <option selected>Mejores en</option>
+              <option value="2019" [selected] = "year == '2019'">2019</option>
+              <option value="2018" [selected] = "year == '2018'">2018</option>
+              <option value="2017" [selected] = "year == '2017'">2017</option>
+              <option value="2016" [selected] = "year == '2016'">2016</option>
+              <option value="2015" [selected] = "year == '2015'">2015</option>
+            </select>
+            </div>
+  </div>
+
+<div class="row mt-3 mx-auto" *ngIf="peliculas['total_results'] == 0">
+  <div class="col-md-12">
+    <div class="p-3 mb-2 bg-danger text-white">No se encontro ningun resultado</div>
+  </div>
 </div>
+
+<div class="card-columns mt-3">
+  <div class="card animated fadeIn fast" *ngFor="let item of peliculas['results']">
+      <div class="containerimg">
+    <img [routerLink] = "['pelicula',item.id]" [src]="item.poster_path | domseguro:'https://image.tmdb.org/t/p/w300'" class="card-img-top img-thumbnail img-fluid image puntero" alt="{{item.title}}">
+    <div class="middle">
+        <div class="text"><strong class="font-italic">Popularidad:</strong> {{item.popularity | number:'2.0-0'}}</div>
+        <div class="text"><strong class="font-italic">Votos:</strong> {{item.vote_count | number:'2.0-0'}}</div>
+        <img src="https://www.shareicon.net/download/2016/01/30/711363_cinema_512x512.png" alt="no adult" style="width:50px" *ngIf="item.adult">
+      </div>
+      </div>
+    <div class="card-body">
+      <h5 class="card-title">{{item.title}}</h5>
+      <p class="card-text">{{item.overview | cutResume}}</p>
+      <p class="card-text"><small class="text-muted">Lanzamiento: {{item.release_date}}</small></p>
+    </div>
+  </div>
+</div>
+</div>
+<!-- https://www.shareicon.net/download/2016/01/30/711363_cinema_512x512.png -->
