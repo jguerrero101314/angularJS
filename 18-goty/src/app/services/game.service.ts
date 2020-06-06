@@ -9,19 +9,23 @@ import { tap } from "rxjs/operators";
   providedIn: "root",
 })
 export class GameService {
- private  juegos: Game[] = [];
+  private juegos: Game[] = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
   getNominados() {
     if (this.juegos.length > 0) {
       // No tenemos juegos
-      console.log('Desde cache');
+      console.log("Desde cache");
       return of(this.juegos);
     } else {
-      console.log('Desde internet');
+      console.log("Desde internet");
       return this.http
         .get<Game[]>(`${environment.url}/api/goty`)
         .pipe(tap((juegos) => (this.juegos = juegos)));
     }
+  }
+
+  votarJuego(id: string) {
+    return this.http.post(`${environment.url}/api/goty/${ id }`, {});
   }
 }
